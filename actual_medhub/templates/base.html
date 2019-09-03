@@ -25,15 +25,24 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-          </li>
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="nav-link" href="#">Contacts</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
+          </li> {% endcomment %}
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -44,13 +53,13 @@
     {% endblock content %}
 
 
-    <!-- Footer -->
+    {% comment %} <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Medhub 2019</p>
     </div>
     <!-- /.container -->
-  </footer>
+  </footer> {% endcomment %}
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
