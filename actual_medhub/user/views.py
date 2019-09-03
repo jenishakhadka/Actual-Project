@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
@@ -37,6 +37,11 @@ def HomeView(request):
         'products' : product.objects.all()
     }
     return render(request, 'index.html', context)
+
+
+def product_details(request, product_id):
+    products = get_object_or_404(product, pk=product_id)
+    return render(request, 'product.html', {'products':products})
 
 
 
