@@ -14,14 +14,13 @@ class SignUpView(CreateView):
     template_name = 'signup.html'
 
 
-def homepage(request):
-    if request.user.is_authenticated:
-        return HttpResponse("<h1>You are authincated!</h1>")
-    return render(request, 'home.html')
-
-def products(request):
+def HomeView(request):
     context = {
         'products' : product.objects.all()
     }
-    return render(request, 'products.html',context)
+    return render(request, 'index.html', context)
+
+
+
+
 
