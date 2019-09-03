@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
 
-from .models import UserDetails
+from .models import UserDetails, product
 from .forms import CustomUserCreationForm
 
 
@@ -18,4 +18,10 @@ def homepage(request):
     if request.user.is_authenticated:
         return HttpResponse("<h1>You are authincated!</h1>")
     return render(request, 'home.html')
+
+def products(request):
+    context = {
+        'products' : product.objects.all()
+    }
+    return render(request, 'products.html',context)
 
